@@ -14,6 +14,7 @@ public class Main extends JFrame implements ActionListener {
     JLabel currentLevel;
     JPanel head;
     JButton levelUp;
+    Icon buttonIcon;
 
     int timesKlicked = 0;
     int hunderterStelle = 0;
@@ -34,10 +35,13 @@ public class Main extends JFrame implements ActionListener {
         GridLayout headerLayout = new GridLayout(0, 3);
         head = new JPanel();
         levelUp = new JButton("Level Up");
-        button = new JButton("Klick on me!");
+        button = new JButton("Click Me!", new ImageIcon("clicker.png"));
+        button.setMnemonic('O');
         label = new JLabel("Klicks: " + timesKlicked);
         currentLevel = new JLabel("CurrentLevel: " + timesKlicked);
+
         pbar = new JProgressBar();
+
         pbar.setMinimum(MIN_VALUE);
         pbar.setMaximum(MAX_VALUE);
 
