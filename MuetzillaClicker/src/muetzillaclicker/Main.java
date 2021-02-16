@@ -36,8 +36,8 @@ public class Main extends JFrame implements ActionListener {
     public Main() {
         unixTimeStart = Instant.now().getEpochSecond();
         initComponents();
-        Heroes heroes = new Heroes("TEST");
-        heroes.start();
+        HeroesRun heroesRun = new HeroesRun("TEST");
+        heroesRun.start();
     }
 
     private void initComponents() {
