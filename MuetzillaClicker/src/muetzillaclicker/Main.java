@@ -103,14 +103,9 @@ public class Main extends JFrame implements ActionListener {
         int nextLevelMulti = 4;
         int damageMulti = 3;
         clicks -= clicksNeededForNextLevel;
-        clickDamage = (clickerLevel / 2 * damageMulti + 2);
-        clicksNeededForNextLevel = (clicksNeededForNextLevel / 2 * nextLevelMulti + 1);
+        clickDamage += (clickerLevel / 2 * damageMulti + 2);
+        clicksNeededForNextLevel += (clicksNeededForNextLevel / 3 * nextLevelMulti + 1);
 
-        /*
-        if (clickerLevel % 10 == 0) {
-            nextLevelMulti++;
-            damageMulti++;
-        }*/
         clickerLevel++;
         label.setText("Klicks: " + clicks);
         currentDamage.setText("Akuteller Schaden: " + clickDamage);
