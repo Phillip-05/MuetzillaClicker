@@ -18,6 +18,8 @@ public class Main extends JFrame implements ActionListener {
 
     int timesKlicked = 0;
     int hunderterStelle = 0;
+    int clickDamage = 1;
+    int clickerLevel = 1;
 
     final int MAX_VALUE = 100;
     final int MIN_VALUE = 0;
