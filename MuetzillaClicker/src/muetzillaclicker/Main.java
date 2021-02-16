@@ -12,6 +12,9 @@ public class Main extends JFrame implements ActionListener {
     JButton button;
     JLabel label;
     int timesKlicked = 0;
+    int hunderterStelle = 0;
+    final int MAX_VALUE = 100;
+    final int MIN_VALUE = 0;
 
     public Main() {
         initComponents();
@@ -25,15 +28,15 @@ public class Main extends JFrame implements ActionListener {
         button = new JButton("Klick on me!");
         label = new JLabel("Klicks: " + timesKlicked);
         pbar = new JProgressBar();
-        pbar.setMinimum(0);
-        pbar.setMaximum(100);
-        pbar.setValue(timesKlicked * 10);
+        pbar.setMinimum(MIN_VALUE);
+        pbar.setMaximum(MAX_VALUE);
+
         pbar.setStringPainted(true);
         add(label, BorderLayout.NORTH);
         add(button, BorderLayout.CENTER);
         button.addActionListener(this);
         add(pbar, BorderLayout.SOUTH);
-        
+
         setVisible(true);
     }
 
@@ -43,9 +46,19 @@ public class Main extends JFrame implements ActionListener {
         if (e.getSource() == button) {
             timesKlicked++;
             label.setText("Klicks: " + timesKlicked);
+            levelSetValue();
 
+        }
+    }
+
+    private void levelSetValue() {
+        if (timesKlicked <= MAX_VALUE) {
             pbar.setValue(timesKlicked);
+        } else {
 
+        }
+        if (timesKlicked % 100 == 0) {
+            pbar.setValue(0);
         }
     }
 
