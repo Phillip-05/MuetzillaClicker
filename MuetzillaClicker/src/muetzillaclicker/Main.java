@@ -16,7 +16,11 @@ public class Main extends JFrame implements ActionListener {
     JLabel label;
     JLabel currentLevel;
     JPanel head;
+    JPanel footer;
+    JPanel left;
+    JPanel right;
     JLabel levelCost;
+    JLabel pbarTitel;
     JLabel currentDamage;
     JButton levelUp;
     Icon buttonIcon;
@@ -44,11 +48,15 @@ public class Main extends JFrame implements ActionListener {
         setSize(750, 500);
         setTitle("MuetzillaClicker");
         GridLayout headerLayout = new GridLayout(0, 5);
+        GridLayout footerLayout = new GridLayout(2, 1);
 
         buttonIcon = new ImageIcon("images/clicker.png");
         head = new JPanel();
+        footer = new JPanel();
+        left = new JPanel();
+        right = new JPanel();
         levelCost = new JLabel("Level Kosten: " + clicksNeededForNextLevel);
-
+        pbarTitel = new JLabel("Vortschritt in der aktuellen Stage");
         currentDamage = new JLabel("Aktueller Schaden:" + clickDamage);
 
         levelUp = new JButton("LEVEL UP Clicker");
@@ -63,19 +71,30 @@ public class Main extends JFrame implements ActionListener {
 
         pbar.setMinimum(MIN_VALUE);
         pbar.setMaximum(MAX_VALUE);
-
         pbar.setStringPainted(true);
+
         add(head, BorderLayout.NORTH);
+        add(footer, BorderLayout.SOUTH);
+        add(left, BorderLayout.WEST);
+        add(right, BorderLayout.EAST);
+
         head.setLayout(headerLayout);
         head.add(label);
         head.add(currentDamage);
         head.add(currentLevel);
         head.add(levelCost);
         head.add(levelUp);
+
         add(button, BorderLayout.CENTER);
+
+        footer.setLayout(footerLayout);
+        footer.add(pbarTitel);
+        footer.add(pbar);
+
         button.addActionListener(this);
         levelUp.addActionListener(this);
-        add(pbar, BorderLayout.SOUTH);
+
+
 
         setVisible(true);
         addWindowListener(new WindowAdapter() {
