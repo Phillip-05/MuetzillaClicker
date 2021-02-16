@@ -13,13 +13,15 @@ public class Main extends JFrame implements ActionListener {
     JLabel label;
     JLabel currentLevel;
     JPanel head;
+    JLabel levelCost;
     JButton levelUp;
     Icon buttonIcon;
 
-    int timesKlicked = 0;
+    int clicks = 0;
     int hunderterStelle = 0;
     int clickDamage = 1;
     int clickerLevel = 1;
+    int clicksNeededForNextLevel = 10;
 
     final int MAX_VALUE = 100;
     final int MIN_VALUE = 0;
@@ -31,16 +33,21 @@ public class Main extends JFrame implements ActionListener {
     }
 
     private void initComponents() {
-        setSize(500, 500);
+        setSize(750, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Muetzilla Clicker");
-        GridLayout headerLayout = new GridLayout(0, 3);
+        setTitle("MuetzillaClicker");
+        GridLayout headerLayout = new GridLayout(0, 4);
+
+        buttonIcon = new ImageIcon("images/clicker.png");
         head = new JPanel();
-        levelUp = new JButton("Level Up");
-        button = new JButton("Click Me!", new ImageIcon("clicker.png"));
+        levelCost = new JLabel("Level Kosten: " + clicks + "/" + clicksNeededForNextLevel);
+
+        levelUp = new JButton("LEVEL UP");
+        button = new JButton(buttonIcon);
+
         button.setMnemonic('O');
-        label = new JLabel("Klicks: " + timesKlicked);
-        currentLevel = new JLabel("CurrentLevel: " + timesKlicked);
+        label = new JLabel("Klicks: " + clicks);
+        currentLevel = new JLabel("Current Level: " + clicks);
 
         pbar = new JProgressBar();
 
@@ -52,6 +59,7 @@ public class Main extends JFrame implements ActionListener {
         head.setLayout(headerLayout);
         head.add(label);
         head.add(currentLevel);
+        head.add(levelCost);
         head.add(levelUp);
         add(button, BorderLayout.CENTER);
         button.addActionListener(this);
@@ -64,19 +72,26 @@ public class Main extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
-            timesKlicked++;
-            label.setText("Klicks: " + timesKlicked);
+            clicks += clickDamage;
+            label.setText("Klicks: " + clicks);
+            levelCost.setText("Level Kosten: " + clicks + "/" + clicksNeededForNextLevel);
             levelSetValue();
 
+        } else if (e.getSource() == levelUp && clicks >= clicksNeededForNextLevel) {
+            clickerLevelUp();
         }
+    }
+
+    private void clickerLevelUp() {
+
     }
 
     private void levelSetValue() {
         int timesClickedThis100 = 0;
-        if (timesKlicked <= MAX_VALUE) {
+        if (clicks <= MAX_VALUE) {
             pbar.setValue(timesClickedThis100);
         }
-        if (timesKlicked % 100 == 0) {
+        if (clicks % 100 == 0) {
             pbar.setValue(0);
         }
     }
