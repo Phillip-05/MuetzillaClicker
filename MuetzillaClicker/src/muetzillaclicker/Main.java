@@ -22,7 +22,7 @@ public class Main extends JFrame implements ActionListener {
     Icon buttonIcon;
 
     int clicks = 0;
-    int hunderterStelle = 0;
+    int clicksForStage = 0;
     int clickDamage = 1;
     int clickerLevel = 1;
     int clicksNeededForNextLevel = 10;
@@ -60,6 +60,7 @@ public class Main extends JFrame implements ActionListener {
 
         pbar = new JProgressBar();
 
+
         pbar.setMinimum(MIN_VALUE);
         pbar.setMaximum(MAX_VALUE);
 
@@ -91,6 +92,7 @@ public class Main extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
             clicks += clickDamage;
+            clicksForStage++;
             label.setText("Klicks: " + clicks);
             levelCost.setText("Level Kosten: " + clicksNeededForNextLevel);
             stage();
@@ -103,7 +105,14 @@ public class Main extends JFrame implements ActionListener {
     }
 
     private void stage() {
-        int timesClickedThis100 = 0;
+
+        if (clicksForStage <= MAX_VALUE) {
+            pbar.setValue(clicksForStage);
+        }else{
+            clicksForStage = 0;
+            button.setBackground(Color.RED);
+            button.setForeground(Color.ORANGE);
+        }
 
     }
 
@@ -122,15 +131,7 @@ public class Main extends JFrame implements ActionListener {
 
     }
 
-    private void levelSetValue() {
 
-        if (clicks <= MAX_VALUE) {
-            //pbar.setValue(timesClickedThis100);
-        }
-        if (clicks > 100) {
-
-        }
-    }
 
 
     public static void main(String[] args) {
