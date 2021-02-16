@@ -28,7 +28,7 @@ public class Main extends JFrame implements ActionListener {
     }
 
     private void initComponents() {
-        setSize(300, 300);
+        setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Muetzilla Clicker");
         GridLayout headerLayout = new GridLayout(0, 3);
