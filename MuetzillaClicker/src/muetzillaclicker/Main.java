@@ -36,6 +36,8 @@ public class Main extends JFrame implements ActionListener {
     public Main() {
         unixTimeStart = Instant.now().getEpochSecond();
         initComponents();
+        Heroes heroes = new Heroes("TEST");
+        heroes.start();
     }
 
     private void initComponents() {
@@ -45,7 +47,7 @@ public class Main extends JFrame implements ActionListener {
 
         buttonIcon = new ImageIcon("images/clicker.png");
         head = new JPanel();
-        levelCost = new JLabel("Level Kosten: " + clicks + "/" + clicksNeededForNextLevel);
+        levelCost = new JLabel("Level Kosten: " + clicksNeededForNextLevel);
 
         currentDamage = new JLabel("Aktueller Schaden:" + clickDamage);
 
@@ -90,13 +92,19 @@ public class Main extends JFrame implements ActionListener {
         if (e.getSource() == button) {
             clicks += clickDamage;
             label.setText("Klicks: " + clicks);
-            levelCost.setText("Level Kosten: " + clicks + "/" + clicksNeededForNextLevel);
-            levelSetValue();
+            levelCost.setText("Level Kosten: " + clicksNeededForNextLevel);
+            stage();
+
 
         } else if (e.getSource() == levelUp && clicks >= clicksNeededForNextLevel) {
             System.out.println("Level Up pressed!");
             clickerLevelUp();
         }
+    }
+
+    private void stage() {
+        int timesClickedThis100 = 0;
+
     }
 
     private void clickerLevelUp() {
@@ -110,17 +118,17 @@ public class Main extends JFrame implements ActionListener {
         label.setText("Klicks: " + clicks);
         currentDamage.setText("Akuteller Schaden: " + clickDamage);
         currentLevel.setText("Aktuelles Level: " + clickerLevel);
-        levelCost.setText("Level Kosten: " + clicks + "/" + clicksNeededForNextLevel);
+        levelCost.setText("Level Kosten: " + clicksNeededForNextLevel);
 
     }
 
     private void levelSetValue() {
-        int timesClickedThis100 = 0;
+
         if (clicks <= MAX_VALUE) {
-            pbar.setValue(timesClickedThis100);
+            //pbar.setValue(timesClickedThis100);
         }
-        if (clicks % 100 == 0) {
-            pbar.setValue(0);
+        if (clicks > 100) {
+
         }
     }
 
