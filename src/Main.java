@@ -24,6 +24,7 @@ public class Main extends JFrame implements ActionListener {
     JButton levelUp;
     JButton iceWolfButton;
     JLabel iceWolfLabel;
+    JLabel iceWolfDamage;
     JLabel iceWolfLevel;
     Icon buttonIcon;
 
@@ -34,6 +35,7 @@ public class Main extends JFrame implements ActionListener {
     int clicksNeededForNextLevel = 10;
 
     int iceWolfCurrentLevel = 0;
+    int getIceWolfCurrentDamage = 10;
 
     long unixTimeEnd;
     long unixTimeStart;
@@ -55,7 +57,7 @@ public class Main extends JFrame implements ActionListener {
         GridLayout headerLayout = new GridLayout(0, 5);
         GridLayout footerLayout = new GridLayout(2, 1);
         GridLayout leftLayout = new GridLayout(0, 2);
-        GridLayout heroesLayout = new GridLayout(2, 1);
+        GridLayout heroesLayout = new GridLayout(3, 1);
 
 
         //Init
@@ -82,6 +84,7 @@ public class Main extends JFrame implements ActionListener {
         iceWolfButton = new JButton("IceWolf");
         iceWolfLabel = new JLabel("Ice Wolf Level:" + iceWolfCurrentLevel);
         iceWolfLevel = new JLabel("Kosten: " + clicksNeededForNextLevelIW);
+        iceWolfDamage = new JLabel("IceWolf Schaden: 0");
         panelIceWolf = new JPanel();
 
         //Footer
@@ -114,6 +117,7 @@ public class Main extends JFrame implements ActionListener {
         panelIceWolf.setLayout(heroesLayout);
         panelIceWolf.add(iceWolfLabel);
         panelIceWolf.add(iceWolfLevel);
+        panelIceWolf.add(iceWolfDamage);
         left.add(iceWolfButton);
 
         //Footer
@@ -154,7 +158,22 @@ public class Main extends JFrame implements ActionListener {
             clickerLevelUp();
         }else if(e.getSource() == iceWolfButton && clicks >= clicksNeededForNextLevelIW){
             System.out.println("Level UP Ice Wolf");
+            iceWolfLevelUp();
         }
+    }
+
+    private void iceWolfLevelUp() {
+        int nextLevelMulti = 4;
+        int damageMulti = 3;
+        clicks -= clicksNeededForNextLevelIW;
+        clickDamage += (clickerLevel / 2 * damageMulti + 2);
+        clicksNeededForNextLevel += (clicksNeededForNextLevel / 3 * nextLevelMulti + 1);
+
+        iceWolfCurrentLevel++;
+        label.setText("Klicks: " + clicks);
+        iceWolfDamage.setText("Akuteller Schaden: " + iceWolfDamage);
+        iceWolfLabel.setText("Aktuelles Level: " + iceWolfCurrentLevel);
+        iceWolfLevel.setText("Level Kosten: " + clicksNeededForNextLevelIW);
     }
 
     private void stage() {
@@ -168,7 +187,7 @@ public class Main extends JFrame implements ActionListener {
         }
 
     }
-
+    
     private void clickerLevelUp() {
         int nextLevelMulti = 4;
         int damageMulti = 3;
