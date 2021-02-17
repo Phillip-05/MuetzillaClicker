@@ -23,6 +23,9 @@ public class Main extends JFrame implements ActionListener {
     JLabel pbarTitel;
     JLabel currentDamage;
     JButton levelUp;
+    JButton iceWolfButton;
+    JLabel iceWolfLabel;
+    JLabel iceWolfLevel;
     Icon buttonIcon;
 
     int clicks = 0;
@@ -49,35 +52,47 @@ public class Main extends JFrame implements ActionListener {
         setTitle("MuetzillaClicker");
         GridLayout headerLayout = new GridLayout(0, 5);
         GridLayout footerLayout = new GridLayout(2, 1);
+        GridLayout leftLayout = new GridLayout(5, 3);
 
-        buttonIcon = new ImageIcon("images/clicker.png");
+
+        //Init
         head = new JPanel();
         footer = new JPanel();
         left = new JPanel();
         right = new JPanel();
+        
+        //Header
         levelCost = new JLabel("Level Kosten: " + clicksNeededForNextLevel);
         pbarTitel = new JLabel("Vortschritt in der aktuellen Stage");
         currentDamage = new JLabel("Aktueller Schaden:" + clickDamage);
-
-        levelUp = new JButton("LEVEL UP Clicker");
-        button = new JButton(buttonIcon);
-
-        button.setMnemonic('O');
         label = new JLabel("Klicks: " + clicks);
         currentLevel = new JLabel("Aktuelles Level: " + clickerLevel);
+        levelUp = new JButton("LEVEL UP Clicker");
 
+        //Center
+        buttonIcon = new ImageIcon("images/clicker.png");
+        button = new JButton(buttonIcon);
+        button.setMnemonic('O');
+
+        //Center - Left
+        iceWolfButton = new JButton("IceWolf");
+        iceWolfLabel = new JLabel("Level UP Ice Wolf");
+        iceWolfLevel = new JLabel("Level UP Ice Wolf");
+
+        //Footer
         pbar = new JProgressBar();
-
-
         pbar.setMinimum(MIN_VALUE);
         pbar.setMaximum(MAX_VALUE);
         pbar.setStringPainted(true);
 
+        //Hinzufügen
+
         add(head, BorderLayout.NORTH);
         add(footer, BorderLayout.SOUTH);
         add(left, BorderLayout.WEST);
-        add(right, BorderLayout.EAST);
+       // add(right, BorderLayout.EAST);
 
+        //Head
         head.setLayout(headerLayout);
         head.add(label);
         head.add(currentDamage);
@@ -85,12 +100,21 @@ public class Main extends JFrame implements ActionListener {
         head.add(levelCost);
         head.add(levelUp);
 
+        //Main Center
         add(button, BorderLayout.CENTER);
 
+        //Main Left
+        left.setLayout(leftLayout);
+        left.add(iceWolfLabel);
+        left.add(iceWolfLevel);
+        left.add(iceWolfButton);
+
+        //Footer
         footer.setLayout(footerLayout);
         footer.add(pbarTitel);
         footer.add(pbar);
 
+        //Action Listener
         button.addActionListener(this);
         levelUp.addActionListener(this);
 
