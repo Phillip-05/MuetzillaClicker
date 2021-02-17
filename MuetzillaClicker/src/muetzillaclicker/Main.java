@@ -38,6 +38,7 @@ public class Main extends JFrame implements ActionListener {
     long unixTimeStart;
     final int MAX_VALUE = 100;
     final int MIN_VALUE = 0;
+    int clicksNeededForNextLevelIW = 10;
 
 
     public Main() {
@@ -117,6 +118,7 @@ public class Main extends JFrame implements ActionListener {
         //Action Listener
         button.addActionListener(this);
         levelUp.addActionListener(this);
+        iceWolfButton.addActionListener(this);
 
 
 
@@ -144,6 +146,8 @@ public class Main extends JFrame implements ActionListener {
         } else if (e.getSource() == levelUp && clicks >= clicksNeededForNextLevel) {
             System.out.println("Level Up pressed!");
             clickerLevelUp();
+        }else if(e.getSource() == iceWolfButton && clicks >= clicksNeededForNextLevelIW){
+            System.out.println("Level UP Ice Wolf");
         }
     }
 
