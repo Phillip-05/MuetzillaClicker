@@ -17,6 +17,7 @@ public class Main extends JFrame implements ActionListener {
     JPanel footer;
     JPanel left;
     JPanel right;
+    JPanel panelIceWolf;
     JLabel levelCost;
     JLabel pbarTitel;
     JLabel currentDamage;
@@ -31,6 +32,8 @@ public class Main extends JFrame implements ActionListener {
     int clickDamage = 1;
     int clickerLevel = 1;
     int clicksNeededForNextLevel = 10;
+
+    int iceWolfCurrentLevel = 0;
 
     long unixTimeEnd;
     long unixTimeStart;
@@ -47,11 +50,12 @@ public class Main extends JFrame implements ActionListener {
     }
 
     private void initComponents() {
-        setSize(750, 500);
+        setSize(1000, 500);
         setTitle("MuetzillaClicker");
         GridLayout headerLayout = new GridLayout(0, 5);
         GridLayout footerLayout = new GridLayout(2, 1);
-        GridLayout leftLayout = new GridLayout(5, 3);
+        GridLayout leftLayout = new GridLayout(0, 2);
+        GridLayout heroesLayout = new GridLayout(2, 1);
 
 
         //Init
@@ -74,9 +78,11 @@ public class Main extends JFrame implements ActionListener {
         button.setMnemonic('O');
 
         //Center - Left
+        //IceWolf
         iceWolfButton = new JButton("IceWolf");
-        iceWolfLabel = new JLabel("Level UP Ice Wolf");
-        iceWolfLevel = new JLabel("Level UP Ice Wolf");
+        iceWolfLabel = new JLabel("Ice Wolf Level:" + iceWolfCurrentLevel);
+        iceWolfLevel = new JLabel("Kosten: " + clicksNeededForNextLevelIW);
+        panelIceWolf = new JPanel();
 
         //Footer
         pbar = new JProgressBar();
@@ -104,8 +110,10 @@ public class Main extends JFrame implements ActionListener {
 
         //Main Left
         left.setLayout(leftLayout);
-        left.add(iceWolfLabel);
-        left.add(iceWolfLevel);
+        left.add(panelIceWolf);
+        panelIceWolf.setLayout(heroesLayout);
+        panelIceWolf.add(iceWolfLabel);
+        panelIceWolf.add(iceWolfLevel);
         left.add(iceWolfButton);
 
         //Footer
