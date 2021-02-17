@@ -163,12 +163,7 @@ public class Main extends JFrame implements ActionListener {
     }
 
     private void iceWolfLevelUp() {
-        int nextLevelMulti = 4;
-        int damageMulti = 3;
         clicks -= clicksNeededForNextLevelIW;
-        clickDamage += (clickerLevel / 2 * damageMulti + 2);
-        clicksNeededForNextLevel += (clicksNeededForNextLevel / 3 * nextLevelMulti + 1);
-
         iceWolfCurrentLevel++;
         label.setText("Klicks: " + clicks);
         iceWolfDamage.setText("Akuteller Schaden: " + iceWolfDamage);
