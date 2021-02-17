@@ -1,5 +1,3 @@
-package muetzillaclicker;
-
 public class HeroesRun implements Runnable {
     private Thread heroes;
     private final String threadName;
