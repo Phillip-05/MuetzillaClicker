@@ -60,7 +60,7 @@ public class Main extends JFrame implements ActionListener {
         footer = new JPanel();
         left = new JPanel();
         right = new JPanel();
-        
+
         //Header
         levelCost = new JLabel("Level Kosten: " + clicksNeededForNextLevel);
         pbarTitel = new JLabel("Vortschritt in der aktuellen Stage");
