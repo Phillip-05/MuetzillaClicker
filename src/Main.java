@@ -186,8 +186,8 @@ public class Main extends JFrame implements ActionListener {
         int nextLevelMulti = 4;
         int damageMulti = 3;
         clicks -= clicksNeededForNextLevel;
-        clickDamage += (clickerLevel / 2 * damageMulti + 2);
-        clicksNeededForNextLevel += (clicksNeededForNextLevel / 3 * nextLevelMulti + 1);
+        clickDamage += ((clickerLevel / 2 + 3) * damageMulti);
+        clicksNeededForNextLevel += ((clicksNeededForNextLevel / 3 + 1) * nextLevelMulti);
 
         clickerLevel++;
         label.setText("Klicks: " + clicks);
