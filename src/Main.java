@@ -24,7 +24,7 @@ public class Main extends JFrame implements ActionListener {
     JButton levelUp;
     JButton iceWolfButton;
     JLabel iceWolfLabel;
-    JLabel iceWolfDamage;
+    JLabel iceWolfDamageLabel;
     JLabel iceWolfLevel;
     Icon buttonIcon;
 
@@ -35,7 +35,7 @@ public class Main extends JFrame implements ActionListener {
     int clicksNeededForNextLevel = 10;
 
     int iceWolfCurrentLevel = 0;
-    int getIceWolfCurrentDamage = 10;
+    int IceWolfCurrentDamage = 10;
 
     long unixTimeEnd;
     long unixTimeStart;
@@ -84,7 +84,7 @@ public class Main extends JFrame implements ActionListener {
         iceWolfButton = new JButton("IceWolf");
         iceWolfLabel = new JLabel("Ice Wolf Level:" + iceWolfCurrentLevel);
         iceWolfLevel = new JLabel("Kosten: " + clicksNeededForNextLevelIW);
-        iceWolfDamage = new JLabel("IceWolf Schaden: 0");
+        iceWolfDamageLabel = new JLabel("IceWolf Schaden: 0");
         panelIceWolf = new JPanel();
 
         //Footer
@@ -98,7 +98,7 @@ public class Main extends JFrame implements ActionListener {
         add(head, BorderLayout.NORTH);
         add(footer, BorderLayout.SOUTH);
         add(left, BorderLayout.WEST);
-       // add(right, BorderLayout.EAST);
+        // add(right, BorderLayout.EAST);
 
         //Head
         head.setLayout(headerLayout);
@@ -117,7 +117,7 @@ public class Main extends JFrame implements ActionListener {
         panelIceWolf.setLayout(heroesLayout);
         panelIceWolf.add(iceWolfLabel);
         panelIceWolf.add(iceWolfLevel);
-        panelIceWolf.add(iceWolfDamage);
+        panelIceWolf.add(iceWolfDamageLabel);
         left.add(iceWolfButton);
 
         //Footer
@@ -129,7 +129,6 @@ public class Main extends JFrame implements ActionListener {
         button.addActionListener(this);
         levelUp.addActionListener(this);
         iceWolfButton.addActionListener(this);
-
 
 
         setVisible(true);
@@ -156,7 +155,7 @@ public class Main extends JFrame implements ActionListener {
         } else if (e.getSource() == levelUp && clicks >= clicksNeededForNextLevel) {
             System.out.println("Level Up pressed!");
             clickerLevelUp();
-        }else if(e.getSource() == iceWolfButton && clicks >= clicksNeededForNextLevelIW){
+        } else if (e.getSource() == iceWolfButton && clicks >= clicksNeededForNextLevelIW) {
             System.out.println("Level UP Ice Wolf");
             iceWolfLevelUp();
         }
@@ -166,23 +165,23 @@ public class Main extends JFrame implements ActionListener {
         clicks -= clicksNeededForNextLevelIW;
         iceWolfCurrentLevel++;
         label.setText("Klicks: " + clicks);
-        iceWolfDamage.setText("Akuteller Schaden: " + iceWolfDamage);
+        iceWolfDamageLabel.setText("Akuteller Schaden: " + IceWolfCurrentDamage);
         iceWolfLabel.setText("Aktuelles Level: " + iceWolfCurrentLevel);
         iceWolfLevel.setText("Level Kosten: " + clicksNeededForNextLevelIW);
     }
 
     private void stage() {
-
+        Color color = randomBackgroundColorStage();
         if (clicksForStage <= MAX_VALUE) {
             pbar.setValue(clicksForStage);
-        }else{
+        } else {
             clicksForStage = 0;
-            button.setBackground(Color.RED);
-            button.setForeground(Color.ORANGE);
+            button.setBackground(color);
+            button.setForeground(color);
         }
 
     }
-    
+
     private void clickerLevelUp() {
         int nextLevelMulti = 4;
         int damageMulti = 3;
@@ -198,7 +197,10 @@ public class Main extends JFrame implements ActionListener {
 
     }
 
-
+    private Color randomBackgroundColorStage() {
+        Color color = new Color((int) (Math.random() * 0x1000000));
+        return color;
+    }
 
 
     public static void main(String[] args) {

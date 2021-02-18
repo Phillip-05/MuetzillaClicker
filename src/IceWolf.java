@@ -1,5 +1,5 @@
-public class IceWolf extends Heroes{
-    public IceWolf (){
+public class IceWolf extends Heroes {
+    public IceWolf() {
 
     }
 }
