@@ -1,3 +1,5 @@
+package srcFX;
+
 public abstract class Heroes {
 
     protected double dps;

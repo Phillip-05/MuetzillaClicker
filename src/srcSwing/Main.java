@@ -1,3 +1,5 @@
+package srcSwing;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -49,7 +51,7 @@ public class Main extends JFrame implements ActionListener {
         initComponents();
         HeroesRun heroesRun = new HeroesRun("TEST");
         heroesRun.start();
-    } 
+    }
 
     private void initComponents() {
         setSize(1000, 500);
